@@ -1,0 +1,642 @@
+[
+  {
+    "expected": {
+      "failures": [
+        "'roll back a release': ndcg 1.000 -> 0.843 (-0.157)"
+      ],
+      "k": 3,
+      "mean": {
+        "baseline": {
+          "ndcg": 0.620404037840134,
+          "precision": 0.75,
+          "recall": 0.75,
+          "rr": 0.875
+        },
+        "candidate": {
+          "ndcg": 0.9607070662202345,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rr": 1.0
+        }
+      },
+      "metric": "ndcg",
+      "min_mean": null,
+      "passed": false,
+      "queries": {
+        "api rate limits": {
+          "baseline": {
+            "ndcg": 0.47909091485969846,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.5209090851403015,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "restore from backup": {
+          "baseline": {
+            "ndcg": 0.47909091485969846,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.5209090851403015,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "roll back a release": {
+          "baseline": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 0.8428282648809379,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": -0.15717173511906213,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": true
+        },
+        "set up single sign-on": {
+          "baseline": {
+            "ndcg": 0.5234343216411389,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 0.5,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.4765656783588611,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.5
+          },
+          "regressed": false
+        }
+      },
+      "schema_version": 1,
+      "tolerance": 0.0,
+      "warnings": []
+    },
+    "name": "ndcg@3",
+    "options": {
+      "k": 3
+    }
+  },
+  {
+    "expected": {
+      "failures": [
+        "'roll back a release': ndcg 1.000 -> 0.843 (-0.157)"
+      ],
+      "k": 5,
+      "mean": {
+        "baseline": {
+          "ndcg": 0.7235706509481379,
+          "precision": 0.6,
+          "recall": 1.0,
+          "rr": 0.875
+        },
+        "candidate": {
+          "ndcg": 0.9607070662202345,
+          "precision": 0.6,
+          "recall": 1.0,
+          "rr": 1.0
+        }
+      },
+      "metric": "ndcg",
+      "min_mean": null,
+      "passed": false,
+      "queries": {
+        "api rate limits": {
+          "baseline": {
+            "ndcg": 0.6166463990037038,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.38335360099629623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "restore from backup": {
+          "baseline": {
+            "ndcg": 0.6166463990037038,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.38335360099629623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "roll back a release": {
+          "baseline": {
+            "ndcg": 1.0,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 0.8428282648809379,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": -0.15717173511906213,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": true
+        },
+        "set up single sign-on": {
+          "baseline": {
+            "ndcg": 0.6609898057851442,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 0.5,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.6,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.3390101942148558,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.5
+          },
+          "regressed": false
+        }
+      },
+      "schema_version": 1,
+      "tolerance": 0.0,
+      "warnings": [
+        "'api rate limits': 1 unjudged candidate document(s) in the top 5 score zero",
+        "'restore from backup': 1 unjudged candidate document(s) in the top 5 score zero",
+        "'roll back a release': 1 unjudged candidate document(s) in the top 5 score zero",
+        "'set up single sign-on': 1 unjudged candidate document(s) in the top 5 score zero"
+      ]
+    },
+    "name": "ndcg@5",
+    "options": {
+      "k": 5
+    }
+  },
+  {
+    "expected": {
+      "failures": [],
+      "k": 2,
+      "mean": {
+        "baseline": {
+          "ndcg": 0.4303851437070025,
+          "precision": 0.625,
+          "recall": 0.41666666666666663,
+          "rr": 0.875
+        },
+        "candidate": {
+          "ndcg": 0.9584978080995372,
+          "precision": 1.0,
+          "recall": 0.6666666666666666,
+          "rr": 1.0
+        }
+      },
+      "metric": "recall",
+      "min_mean": null,
+      "passed": true,
+      "queries": {
+        "api rate limits": {
+          "baseline": {
+            "ndcg": 0.11245065757013882,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.8875493424298612,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "restore from backup": {
+          "baseline": {
+            "ndcg": 0.11245065757013882,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.8875493424298612,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "roll back a release": {
+          "baseline": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 0.8339912323981488,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": -0.16600876760185124,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "set up single sign-on": {
+          "baseline": {
+            "ndcg": 0.4966392596877323,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 0.5,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.5033607403122677,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "rr": 0.5
+          },
+          "regressed": false
+        }
+      },
+      "schema_version": 1,
+      "tolerance": 0.1,
+      "warnings": []
+    },
+    "name": "recall@2 with tolerance",
+    "options": {
+      "k": 2,
+      "metric": "recall",
+      "tolerance": 0.1
+    }
+  },
+  {
+    "expected": {
+      "failures": [
+        "mean ndcg 0.961 is below the floor 0.990"
+      ],
+      "k": 3,
+      "mean": {
+        "baseline": {
+          "ndcg": 0.620404037840134,
+          "precision": 0.75,
+          "recall": 0.75,
+          "rr": 0.875
+        },
+        "candidate": {
+          "ndcg": 0.9607070662202345,
+          "precision": 1.0,
+          "recall": 1.0,
+          "rr": 1.0
+        }
+      },
+      "metric": "ndcg",
+      "min_mean": 0.99,
+      "passed": false,
+      "queries": {
+        "api rate limits": {
+          "baseline": {
+            "ndcg": 0.47909091485969846,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.5209090851403015,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "restore from backup": {
+          "baseline": {
+            "ndcg": 0.47909091485969846,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.5209090851403015,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "roll back a release": {
+          "baseline": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 0.8428282648809379,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": -0.15717173511906213,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "set up single sign-on": {
+          "baseline": {
+            "ndcg": 0.5234343216411389,
+            "precision": 0.6666666666666666,
+            "recall": 0.6666666666666666,
+            "rr": 0.5,
+            "unjudged": 0
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 0
+          },
+          "delta": {
+            "ndcg": 0.4765656783588611,
+            "precision": 0.33333333333333337,
+            "recall": 0.33333333333333337,
+            "rr": 0.5
+          },
+          "regressed": false
+        }
+      },
+      "schema_version": 1,
+      "tolerance": 0.2,
+      "warnings": []
+    },
+    "name": "mean floor fails with no regression",
+    "options": {
+      "k": 3,
+      "min_mean": 0.99,
+      "tolerance": 0.2
+    }
+  },
+  {
+    "expected": {
+      "failures": [
+        "'roll back a release': ndcg 1.000 -> 0.843 (-0.157)"
+      ],
+      "k": 10,
+      "mean": {
+        "baseline": {
+          "ndcg": 0.7235706509481379,
+          "precision": 0.3,
+          "recall": 1.0,
+          "rr": 0.875
+        },
+        "candidate": {
+          "ndcg": 0.9607070662202345,
+          "precision": 0.3,
+          "recall": 1.0,
+          "rr": 1.0
+        }
+      },
+      "metric": "ndcg",
+      "min_mean": null,
+      "passed": false,
+      "queries": {
+        "api rate limits": {
+          "baseline": {
+            "ndcg": 0.6166463990037038,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.38335360099629623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "restore from backup": {
+          "baseline": {
+            "ndcg": 0.6166463990037038,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.38335360099629623,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": false
+        },
+        "roll back a release": {
+          "baseline": {
+            "ndcg": 1.0,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 0.8428282648809379,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": -0.15717173511906213,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.0
+          },
+          "regressed": true
+        },
+        "set up single sign-on": {
+          "baseline": {
+            "ndcg": 0.6609898057851442,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 0.5,
+            "unjudged": 1
+          },
+          "candidate": {
+            "ndcg": 1.0,
+            "precision": 0.3,
+            "recall": 1.0,
+            "rr": 1.0,
+            "unjudged": 1
+          },
+          "delta": {
+            "ndcg": 0.3390101942148558,
+            "precision": 0.0,
+            "recall": 0.0,
+            "rr": 0.5
+          },
+          "regressed": false
+        }
+      },
+      "schema_version": 1,
+      "tolerance": 0.0,
+      "warnings": [
+        "'api rate limits': 1 unjudged candidate document(s) in the top 10 score zero",
+        "'restore from backup': 1 unjudged candidate document(s) in the top 10 score zero",
+        "'roll back a release': 1 unjudged candidate document(s) in the top 10 score zero",
+        "'set up single sign-on': 1 unjudged candidate document(s) in the top 10 score zero"
+      ]
+    },
+    "name": "default k",
+    "options": {}
+  }
+]

@@ -1,0 +1,43 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "retrieval-regression-gate"
+version = "0.1.0"
+description = "Dependency-free CI gate that fails when any search or RAG query gets worse, even if the average improves."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Learn AI Engineering" }]
+keywords = ["retrieval", "rag", "search", "evaluation", "ndcg", "ci", "regression"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Testing",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.urls]
+Homepage = "https://learnaiengineering.dev"
+Repository = "https://github.com/learnaiengineering-dev/retrieval-regression-gate"
+Changelog = "https://github.com/learnaiengineering-dev/retrieval-regression-gate/blob/main/CHANGELOG.md"
+
+[project.scripts]
+retrieval-gate = "retrieval_gate.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=8", "build>=1"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+retrieval_gate = ["py.typed"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+

@@ -1,0 +1,59 @@
+name: Retrieval Regression Gate
+description: Fail the job when any search or RAG query gets worse than the baseline.
+author: Learn AI Engineering
+branding:
+  icon: check-circle
+  color: blue
+inputs:
+  baseline:
+    description: JSON file mapping query to ranked document ids for the current system.
+    required: true
+  candidate:
+    description: JSON file mapping query to ranked document ids for the new system.
+    required: true
+  judgments:
+    description: JSON file mapping query to document id to relevance grade (0 to 3).
+    required: true
+  k:
+    description: Cutoff.
+    default: "10"
+  metric:
+    description: ndcg, precision, recall or rr.
+    default: ndcg
+  tolerance:
+    description: Allowed per-query drop before a regression is flagged.
+    default: "0"
+  min-mean:
+    description: Optional floor for the candidate mean. Leave empty to skip.
+    default: ""
+  version:
+    description: Package version to install from PyPI. Leave empty for the latest.
+    default: ""
+runs:
+  using: composite
+  steps:
+    - name: Install
+      shell: bash
+      env:
+        VERSION: ${{ inputs.version }}
+      run: |
+        if [ -n "$VERSION" ]; then
+          python3 -m pip install "retrieval-regression-gate==$VERSION"
+        else
+          python3 -m pip install retrieval-regression-gate
+        fi
+    - name: Run gate
+      shell: bash
+      env:
+        BASELINE: ${{ inputs.baseline }}
+        CANDIDATE: ${{ inputs.candidate }}
+        JUDGMENTS: ${{ inputs.judgments }}
+        K: ${{ inputs.k }}
+        METRIC: ${{ inputs.metric }}
+        TOLERANCE: ${{ inputs.tolerance }}
+        MIN_MEAN: ${{ inputs.min-mean }}
+      run: |
+        args=(--k "$K" --metric "$METRIC" --tolerance "$TOLERANCE" --github-summary)
+        if [ -n "$MIN_MEAN" ]; then args+=(--min-mean "$MIN_MEAN"); fi
+        retrieval-gate "$BASELINE" "$CANDIDATE" "$JUDGMENTS" "${args[@]}"
+

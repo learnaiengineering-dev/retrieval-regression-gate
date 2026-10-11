@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retrieval Regression Gate: docs</title>
+<meta name="description" content="Fail CI when any search or RAG query gets worse. Use it as a CLI, a GitHub Action, a Python library, an embeddable widget or a Claude skill. Offline, no dependencies, MIT licensed.">
+<style>
+:root{
+  --bg:#fafaf5; --panel:#ffffff; --ink:#1a1a1a; --muted:#6b6b66; --line:#e4e4dc;
+  --accent:#3553ff; --accent-ink:#ffffff; --good:#2f9e44; --tint:#eef0ff; --code:#f3f3ec;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#111114; --panel:#1a1a1f; --ink:#ececf0; --muted:#9a9aa5; --line:#2c2c34;
+    --accent:#8097ff; --accent-ink:#111114; --good:#5fd47a; --tint:#22243a; --code:#202026;
+  }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.6 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:880px;margin:0 auto;padding:28px 16px 56px}
+h1{font-size:1.9rem;line-height:1.2;margin:0 0 8px}
+h2{font-size:1.25rem;margin:40px 0 10px}
+h3{font-size:1rem;margin:0 0 6px}
+p{margin:0 0 12px}
+a{color:var(--accent)}
+.lede{color:var(--muted);font-size:1.05rem;max-width:62ch}
+nav{display:flex;flex-wrap:wrap;gap:6px 16px;margin:14px 0 24px;font-size:.9rem}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px}
+.grid .card{margin:0}
+.grid p{color:var(--muted);font-size:.92rem;margin:0}
+pre{margin:0;background:var(--code);border:1px solid var(--line);border-radius:8px;padding:10px 12px;overflow-x:auto;font:13px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+code{font:.88em ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--code);padding:1px 5px;border-radius:4px}
+pre code{background:none;padding:0}
+.snip{position:relative;margin:8px 0 12px}
+.snip button{position:absolute;top:6px;right:6px;font:inherit;font-size:.78rem;color:var(--ink);background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:2px 8px;cursor:pointer}
+.snip button:hover{border-color:var(--accent)}
+.snip pre{padding-right:84px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+table{width:100%;border-collapse:collapse;font-size:.92rem}
+th,td{text-align:left;padding:7px 10px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted)}
+.scroll{overflow-x:auto}
+.ok{color:var(--good);font-weight:700}
+.note{background:var(--tint);border-radius:10px;padding:10px 14px;font-size:.92rem;margin-top:12px}
+footer{color:var(--muted);font-size:.85rem;margin-top:48px;border-top:1px solid var(--line);padding-top:14px}
+</style>
+<script type="module" src="retrieval-gate-widget.js"></script>
+<script type="module" src="docs.js"></script>
+</head>
+<body>
+<main>
+  <h1>Retrieval Regression Gate</h1>
+  <p class="lede">A better average score can hide a query whose best evidence moved down. This gate compares your retriever before and after, query by query, and fails the build when any query got worse.</p>
+  <nav aria-label="On this page">
+    <a href="#try">Try it</a><a href="#use">Ways to use it</a><a href="#embed">Embed the widget</a><a href="#enterprise">For your organisation</a><a href="#limits">Limits</a>
+  </nav>
+
+  <h2 id="try">Try it</h2>
+  <p>The sample below is a new retriever that improves the mean score but pushes one query's best result down. Open "Edit the data" to change rankings or grades, or paste your own.</p>
+  <retrieval-gate editable heading="Retrieval gate" k="3">
+<script type="application/json">
+{
+  "baseline": {
+    "restore from backup": ["notes", "blog", "runbook", "faq", "forum"],
+    "roll back a release": ["guide", "rn", "log", "status", "slack"],
+    "api rate limits": ["pricing", "blog", "limits", "quota", "forum"],
+    "set up single sign-on": ["old", "sso", "admin", "saml", "ticket"]
+  },
+  "candidate": {
+    "restore from backup": ["runbook", "faq", "notes", "blog", "forum"],
+    "roll back a release": ["rn", "guide", "log", "status", "slack"],
+    "api rate limits": ["limits", "quota", "pricing", "forum", "blog"],
+    "set up single sign-on": ["sso", "saml", "admin", "old", "ticket"]
+  },
+  "judgments": {
+    "restore from backup": { "runbook": 3, "faq": 2, "notes": 1, "blog": 0 },
+    "roll back a release": { "guide": 3, "rn": 2, "log": 1, "status": 0 },
+    "api rate limits": { "limits": 3, "quota": 2, "pricing": 1, "blog": 0 },
+    "set up single sign-on": { "sso": 3, "saml": 2, "admin": 1, "old": 0 }
+  }
+}
+</script>
+  </retrieval-gate>
+  <p class="note">Grades: 3 is the best evidence, 0 is judged not relevant, and a document with no grade is unjudged and scores zero. Everything runs in your browser. Nothing is sent anywhere.</p>
+
+  <h2 id="use">Ways to use it</h2>
+  <div class="grid">
+    <div class="card"><h3>Command line</h3><p>Run it locally or in any CI. Exit code 1 means a query regressed.</p></div>
+    <div class="card"><h3>GitHub Action</h3><p>One step in a workflow. Writes the result to the job summary.</p></div>
+    <div class="card"><h3>Python library</h3><p>Call <code>compare()</code> from your own eval code and get a JSON-ready report.</p></div>
+    <div class="card"><h3>Embeddable widget</h3><p>Show the gate result on your own site, docs or dashboard.</p></div>
+    <div class="card"><h3>Claude skill</h3><p>Let a coding agent run the gate and explain the regression.</p></div>
+  </div>
+
+  <h3 style="margin-top:20px">Install and run</h3>
+  <div class="snip"><pre><code id="snip-install">pip install retrieval-regression-gate</code></pre><button data-copy="snip-install">Copy</button></div>
+  <div class="snip"><pre><code id="snip-cli">retrieval-gate baseline.json candidate.json judgments.json --k 10 --tolerance 0.02
+# exit 0 pass, 1 a query regressed, 2 bad input</code></pre><button data-copy="snip-cli">Copy</button></div>
+
+  <h3>In GitHub Actions</h3>
+  <div class="snip"><pre><code id="snip-action">- uses: actions/checkout@v4
+- uses: learnaiengineering-dev/retrieval-regression-gate@v0.1.0
+  with:
+    baseline: eval/baseline.json
+    candidate: eval/candidate.json
+    judgments: eval/judgments.json
+    k: "10"
+    tolerance: "0.02"</code></pre><button data-copy="snip-action">Copy</button></div>
+
+  <h3>From Python</h3>
+  <div class="snip"><pre><code id="snip-python">from retrieval_gate import compare
+
+result = compare(baseline, candidate, judgments, k=10, tolerance=0.02)
+if not result.passed:
+    for message in result.failures:
+        print(message)
+    raise SystemExit(1)</code></pre><button data-copy="snip-python">Copy</button></div>
+
+  <h3>As a Claude skill</h3>
+  <p>The skill lives in <a href="https://github.com/learnaiengineering-dev/claude-skills-starter">claude-skills-starter</a>. Copy the folder into your skills directory:</p>
+  <div class="snip"><pre><code id="snip-skill">cp -r skills/retrieval-regression-check ~/.claude/skills/</code></pre><button data-copy="snip-skill">Copy</button></div>
+
+  <h2 id="embed">Embed the widget</h2>
+  <p>The widget is one JavaScript file with no dependencies. Copy <code>retrieval-gate-widget.js</code> next to your page (host it yourself; there is no CDN to depend on), then add the element:</p>
+  <div class="snip"><pre><code id="snip-embed">&lt;script type="module" src="/assets/retrieval-gate-widget.js"&gt;&lt;/script&gt;
+
+&lt;retrieval-gate heading="Retrieval check" k="10" tolerance="0.02"&gt;
+  &lt;script type="application/json"&gt;
+    { "baseline": {}, "candidate": {}, "judgments": {} }
+  &lt;/script&gt;
+&lt;/retrieval-gate&gt;</code></pre><button data-copy="snip-embed">Copy</button></div>
+  <p>Or show a ready-made page in an iframe using <a href="embed.html">embed.html</a>:</p>
+  <div class="snip"><pre><code id="snip-iframe">&lt;iframe src="/assets/embed.html" title="Retrieval gate" width="100%" height="380" loading="lazy"&gt;&lt;/iframe&gt;</code></pre><button data-copy="snip-iframe">Copy</button></div>
+
+  <h3>Attributes</h3>
+  <div class="scroll"><table>
+    <tr><th>Attribute</th><th>Default</th><th>What it does</th></tr>
+    <tr><td><code>k</code></td><td>10</td><td>Cutoff: only the top k results are scored.</td></tr>
+    <tr><td><code>metric</code></td><td>ndcg</td><td><code>ndcg</code>, <code>precision</code>, <code>recall</code> or <code>rr</code>.</td></tr>
+    <tr><td><code>tolerance</code></td><td>0</td><td>Allowed per-query drop before a query counts as regressed.</td></tr>
+    <tr><td><code>min-mean</code></td><td>none</td><td>Also fail when the candidate mean is below this floor.</td></tr>
+    <tr><td><code>editable</code></td><td>off</td><td>Adds an "Edit the data" panel so visitors can try their own rankings.</td></tr>
+    <tr><td><code>theme</code></td><td>auto</td><td><code>light</code> or <code>dark</code>. Auto follows the visitor's system setting.</td></tr>
+    <tr><td><code>heading</code></td><td>none</td><td>Optional title shown above the result.</td></tr>
+  </table></div>
+
+  <h3 style="margin-top:20px">Style it to match your site</h3>
+  <p>Set these CSS custom properties on the element or any ancestor:</p>
+  <div class="snip"><pre><code id="snip-css">retrieval-gate {
+  --rg-bg: #ffffff;     --rg-ink: #1a1a1a;   --rg-muted: #6b6b66;
+  --rg-line: #e4e4dc;   --rg-accent: #3553ff;
+  --rg-good: #2f9e44;   --rg-bad: #d9480f;
+  --rg-radius: 12px;    --rg-font: system-ui, sans-serif;
+}</code></pre><button data-copy="snip-css">Copy</button></div>
+
+  <h3>Use it from JavaScript</h3>
+  <div class="snip"><pre><code id="snip-js">const gate = document.querySelector("retrieval-gate");
+gate.data = { baseline, candidate, judgments };          // set or replace the data
+gate.addEventListener("gate-result", (e) =&gt; {
+  console.log(e.detail.passed, e.detail.failures);        // same shape as the Python report
+});
+
+// Or use the logic without the element:
+import { compare } from "/assets/retrieval-gate-widget.js";
+const report = compare(baseline, candidate, judgments, { k: 10, tolerance: 0.02 });</code></pre><button data-copy="snip-js">Copy</button></div>
+  <p>The <code>gate-result</code> event bubbles and carries the report, or <code>null</code> when the input is invalid. The widget's numbers are checked against the Python package with a shared test file, so both give the same results.</p>
+
+  <h3>Security and content policy</h3>
+  <ul>
+    <li><strong>No network access.</strong> The widget never fetches or sends anything. It only reads the data you give it.</li>
+    <li><strong>No inline scripts or style attributes.</strong> Styles are applied with a constructed stylesheet, so a strict <code>script-src 'self'</code> policy works. A browser without constructed stylesheets falls back to a <code>&lt;style&gt;</code> element, which a strict <code>style-src</code> policy would block, leaving the widget unstyled.</li>
+    <li><strong>Your text is never run as HTML.</strong> Query names and document ids are inserted as text.</li>
+    <li><strong>Pin the file.</strong> If you load it from a shared location, add a subresource integrity hash:</li>
+  </ul>
+  <div class="snip"><pre><code id="snip-sri">openssl dgst -sha384 -binary retrieval-gate-widget.js | openssl base64 -A
+# then: &lt;script type="module" src="..." integrity="sha384-&lt;hash&gt;" crossorigin="anonymous"&gt;&lt;/script&gt;</code></pre><button data-copy="snip-sri">Copy</button></div>
+
+  <h2 id="enterprise">For your organisation</h2>
+  <div class="scroll"><table>
+    <tr><th>Question</th><th>Answer</th></tr>
+    <tr><td>Does it send data anywhere?</td><td><span class="ok">No.</span> The CLI and the widget make no network calls and have no telemetry. Rankings and judgments stay on your machine.</td></tr>
+    <tr><td>What does it depend on?</td><td>Nothing at runtime: the Python package has no dependencies and the widget is one file.</td></tr>
+    <tr><td>Can it run offline or behind a firewall?</td><td>Yes. Mirror the package on your internal index, or vendor the single widget file.</td></tr>
+    <tr><td>Are results repeatable?</td><td>Yes. The same inputs always give the same numbers, so reports are safe to diff and archive.</td></tr>
+    <tr><td>Is the output stable?</td><td>The JSON report has a <code>schema_version</code> and the exit codes are documented. Pin an exact version in your pipeline.</td></tr>
+    <tr><td>How is it released?</td><td>Published to PyPI from GitHub with trusted publishing, so there is no long-lived upload token to leak.</td></tr>
+    <tr><td>What is the licence?</td><td>MIT. You can use, modify and redistribute it commercially. Keep the licence, the file header and the <a href="https://github.com/learnaiengineering-dev/retrieval-regression-gate/blob/main/NOTICE">NOTICE</a>.</td></tr>
+    <tr><td>Who reviews the labels?</td><td>You do. The gate is only as good as your judgments, so keep them in version control and review changes like code.</td></tr>
+  </table></div>
+
+  <h2 id="limits">Limits</h2>
+  <ul>
+    <li>Scores describe your labels. They do not prove an answer is correct.</li>
+    <li>Unjudged documents count as zero, so a good result nobody labelled looks like a miss. The report counts them so you can see when labels are missing.</li>
+    <li>Rankings are compared by document id. The tool never reads document contents.</li>
+    <li>The widget shows the gate result. It does not run your retriever.</li>
+  </ul>
+
+  <footer>
+    Built by <a href="https://learnaiengineering.dev">Learn AI Engineering</a>. Source and issues:
+    <a href="https://github.com/learnaiengineering-dev/retrieval-regression-gate">GitHub</a>, <a href="https://pypi.org/project/retrieval-regression-gate/">PyPI</a>.
+    The metric definitions follow the Retrieval Evaluation Lab project in
+    <a href="https://github.com/rohitg00/ai-engineering-from-scratch">AI Engineering from Scratch</a> by rohitg00 (MIT). This is an independent implementation.
+  </footer>
+</main>
+</body>
+</html>

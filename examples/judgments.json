@@ -1,0 +1,7 @@
+{
+  "restore from backup": { "runbook": 3, "faq": 2, "notes": 1, "blog": 0 },
+  "roll back a release": { "guide": 3, "rn": 2, "log": 1, "status": 0 },
+  "api rate limits": { "limits": 3, "quota": 2, "pricing": 1, "blog": 0 },
+  "set up single sign-on": { "sso": 3, "saml": 2, "admin": 1, "old": 0 }
+}
+

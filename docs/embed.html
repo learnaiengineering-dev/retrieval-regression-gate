@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retrieval Regression Gate (embed)</title>
+<meta name="robots" content="noindex">
+<style>
+  html, body { margin: 0; background: transparent; }
+  body { padding: 4px; }
+</style>
+<script type="module" src="retrieval-gate-widget.js"></script>
+</head>
+<body>
+<!-- Put this page in an iframe, or copy the <retrieval-gate> element into your own page. -->
+<retrieval-gate heading="Did the new retriever make any query worse?" k="3">
+<script type="application/json">
+{
+  "baseline": {
+    "restore from backup": ["notes", "blog", "runbook", "faq", "forum"],
+    "roll back a release": ["guide", "rn", "log", "status", "slack"],
+    "api rate limits": ["pricing", "blog", "limits", "quota", "forum"],
+    "set up single sign-on": ["old", "sso", "admin", "saml", "ticket"]
+  },
+  "candidate": {
+    "restore from backup": ["runbook", "faq", "notes", "blog", "forum"],
+    "roll back a release": ["rn", "guide", "log", "status", "slack"],
+    "api rate limits": ["limits", "quota", "pricing", "forum", "blog"],
+    "set up single sign-on": ["sso", "saml", "admin", "old", "ticket"]
+  },
+  "judgments": {
+    "restore from backup": { "runbook": 3, "faq": 2, "notes": 1, "blog": 0 },
+    "roll back a release": { "guide": 3, "rn": 2, "log": 1, "status": 0 },
+    "api rate limits": { "limits": 3, "quota": 2, "pricing": 1, "blog": 0 },
+    "set up single sign-on": { "sso": 3, "saml": 2, "admin": 1, "old": 0 }
+  }
+}
+</script>
+</retrieval-gate>
+</body>
+</html>

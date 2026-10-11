@@ -1,0 +1,14 @@
+retrieval-regression-gate
+Copyright (c) 2026 Learn AI Engineering. Licensed under the MIT License (see LICENSE).
+
+This package is an independent implementation. Its ranking-metric definitions
+(precision and recall at k, reciprocal rank, NDCG with gain 2^grade - 1 and a
+log2(rank + 1) discount, and the per-query comparison idea) follow the
+"Retrieval Evaluation Lab" project in:
+
+  AI Engineering from Scratch
+  https://github.com/rohitg00/ai-engineering-from-scratch
+  Copyright (c) rohitg00, MIT License
+
+No source code from that project is copied into this package.
+

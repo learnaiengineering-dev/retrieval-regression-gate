@@ -1,0 +1,24 @@
+# Copy to .github/workflows/retrieval-gate.yml in your repo.
+# Your pipeline must produce candidate.json from the branch under test; baseline.json and
+# judgments.json are usually committed. This example only shows the gate step.
+name: Retrieval gate
+on: [pull_request]
+jobs:
+  gate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      # ... run your retriever over the judged queries and write eval/candidate.json ...
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install "retrieval-regression-gate==0.1.0"
+      - run: >
+          retrieval-gate eval/baseline.json eval/candidate.json eval/judgments.json
+          --k 10 --tolerance 0.02 --github-summary --json retrieval-report.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: retrieval-report
+          path: retrieval-report.json
+

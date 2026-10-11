@@ -1,0 +1,7 @@
+{
+  "restore from backup": ["notes", "blog", "runbook", "faq", "forum"],
+  "roll back a release": ["guide", "rn", "log", "status", "slack"],
+  "api rate limits": ["pricing", "blog", "limits", "quota", "forum"],
+  "set up single sign-on": ["old", "sso", "admin", "saml", "ticket"]
+}
+
